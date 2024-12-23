@@ -3,7 +3,7 @@
 
 __copyright__ = "(c) 2024, Hidayat Trimarsanto <trimarsanto@gmail.com>"
 __license__ = "MIT"
-__version__ = "2024.12.16.01"
+__version__ = "2024.12.24.01"
 
 # this module provides wrapper to execute Snakemake file from Python code
 
@@ -257,9 +257,12 @@ class SnakeExecutor(object):
                 "ERR: Please provide snakefile to execute using --snakefile argument."
             )
 
-        # process config files
+        # process config files and add to config __configfiles__ key
 
         configfiles = [pathlib.Path(cf) for cf in reversed(self.args.config)]
+        if "__configfiles__" in config:
+            raise ValueError('ERR: config key "__configfiles__" is reserved')
+        config["__configfiles__"] = configfiles
 
         if no_config_cascade or self.args.no_config_cascade:
             if (configfile := self.env_basedir / "config.yaml").is_file():
