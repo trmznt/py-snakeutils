@@ -242,6 +242,9 @@ class SnakeExecutor(object):
         from snakemake import cli
 
         cwd = self.workdir or pathlib.Path.cwd()
+        if "__workdir__" in config:
+            raise ValueError('ERR: config key "__workdir__" is reserved')
+        config["__workdir__"] = cwd
         _cerr(f"Current working directory: {cwd}")
 
         if not (force or self.args.force) and not cwd.is_relative_to(self.env_basedir):
