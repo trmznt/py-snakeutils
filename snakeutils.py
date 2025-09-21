@@ -3,7 +3,7 @@
 
 __copyright__ = "(c) 2024, Hidayat Trimarsanto <trimarsanto@gmail.com>"
 __license__ = "MIT"
-__version__ = "2025.09.13.01"
+__version__ = "2025.09.22.01"
 
 # this module provides wrapper to execute Snakemake file from Python code
 
@@ -387,7 +387,7 @@ def get_snakefile_path(
     from_module: types.ModuleType | None = None,
 ):
     """
-    - return real path of  snakefile
+    - return real path of snakefile
     - filepath can be string or pathlib.Path with either absolute, relative or plain filename
     - filepath can also be in the format of module::filename where it is expected to have
       module/rules/filename path structure.
