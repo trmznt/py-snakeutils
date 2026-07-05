@@ -10,7 +10,7 @@ __license__ = "MIT"
 # snakeutils.py
 # [https://github.com/trmznt/py-snakeutils]
 
-__version__ = "2026.07.17.01"
+__version__ = "2026.07.17.02"
 
 # this module provides wrapper to execute Snakemake file from Python code
 
@@ -369,6 +369,9 @@ class SnakeExecutor(object):
                 argv = []
 
             argv.extend(shlex.split(additional_cli_args))
+
+            if "SNAKEMAKE_EXTRA_ARGS" in os.environ:
+                argv.extend(shlex.split(os.environ["SNAKEMAKE_EXTRA_ARGS"]))
 
             # XXX: need to modify to use snakemake API
             L.debug("parsing snakemake arguments")
